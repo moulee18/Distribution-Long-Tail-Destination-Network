@@ -1,0 +1,146 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-incubrix}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-incubrix_secret}
+      POSTGRES_DB: ${POSTGRES_DB:-incubrix_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U incubrix -d incubrix_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ACCESS_KEY:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_SECRET_KEY:-minioadmin}
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+
+  mock-platforms:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: uvicorn mock-platforms.mock_server:mock_app --host 0.0.0.0 --port 8001
+    ports:
+      - "8001:8001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/openapi.json"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  ghost:
+    image: ghost:5-alpine
+    environment:
+      NODE_ENV: development
+      url: http://localhost:2368
+    ports:
+      - "2368:2368"
+    volumes:
+      - ghost_data:/var/lib/ghost/content
+
+  lemmy:
+    image: dessalines/lemmy:0.19.3
+    ports:
+      - "8536:8536"
+    environment:
+      LEMMY_DATABASE_URL: postgres://incubrix:incubrix_secret@postgres:5432/incubrix_db
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    environment:
+      ENVIRONMENT: ${ENVIRONMENT:-development}
+      SIMULATION_MODE: ${SIMULATION_MODE:-true}
+      DATABASE_URL: postgresql+asyncpg://incubrix:incubrix_secret@postgres:5432/incubrix_db
+      DATABASE_URL_SYNC: postgresql+psycopg2://incubrix:incubrix_secret@postgres:5432/incubrix_db
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      CELERY_RESULT_BACKEND: redis://redis:6379/2
+      MINIO_ENDPOINT: minio:9000
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY:-minioadmin}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY:-minioadmin}
+      MOCK_PLATFORM_BASE_URL: http://mock-platforms:8001
+      LEMMY_INSTANCE_URL: http://lemmy:8536
+      GHOST_ADMIN_API_URL: http://ghost:2368
+      PARTNER_WEBHOOK_URL: http://mock-platforms:8001/mock/webhook/receiver
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      mock-platforms:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: celery -A backend.app.jobs.tasks.celery_app worker --loglevel=info
+    environment:
+      SIMULATION_MODE: ${SIMULATION_MODE:-true}
+      DATABASE_URL: postgresql+asyncpg://incubrix:incubrix_secret@postgres:5432/incubrix_db
+      DATABASE_URL_SYNC: postgresql+psycopg2://incubrix:incubrix_secret@postgres:5432/incubrix_db
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      CELERY_RESULT_BACKEND: redis://redis:6379/2
+      MINIO_ENDPOINT: minio:9000
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: celery -A backend.app.jobs.tasks.celery_app beat --loglevel=info
+    environment:
+      SIMULATION_MODE: ${SIMULATION_MODE:-true}
+      DATABASE_URL: postgresql+asyncpg://incubrix:incubrix_secret@postgres:5432/incubrix_db
+      DATABASE_URL_SYNC: postgresql+psycopg2://incubrix:incubrix_secret@postgres:5432/incubrix_db
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      CELERY_RESULT_BACKEND: redis://redis:6379/2
+    depends_on:
+      redis:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  minio_data:
+  ghost_data:

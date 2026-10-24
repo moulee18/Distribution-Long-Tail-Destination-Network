@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IncuBrix Distribution Hub — Long-Tail Content Network</title>
+  <link rel="stylesheet" href="/ui/css/styles.css" />
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-logo">IB</div>
+      <div>
+        <span class="brand-title">IncuBrix Hub</span>
+        <span class="brand-sub">Long-Tail Distribution</span>
+      </div>
+    </div>
+
+    <ul class="nav-list">
+      <li class="nav-item"><button class="nav-btn active" onclick="switchScreen('dashboard', this)">📊 1. Dashboard</button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="switchScreen('studio', this)">✍️ 2. Content Studio</button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="switchScreen('explorer', this)">🌐 3. Destination Explorer</button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="switchScreen('workspace', this)">🚀 4. Publishing Workspace</button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="switchScreen('connectors', this)">🔌 5. Connector Management</button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="switchScreen('certification', this)">🛡️ 6. Certification Centre</button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="switchScreen('history', this)">📜 7. Publishing History</button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="switchScreen('analytics', this)">📈 8. Analytics</button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="switchScreen('settings', this)">⚙️ 9. Settings & Health</button></li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <div>Assessment 4 — Distribution</div>
+      <div style="margin-top:4px;"><a href="/docs" target="_blank" style="color:#38bdf8;text-decoration:none;">OpenAPI Docs (/docs) ↗</a></div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-wrapper">
+    <header class="topbar">
+      <h1 class="page-title" id="topbar-title">Overview Dashboard</h1>
+      <div class="topbar-actions">
+        <span class="badge badge-sim" id="sim-mode-badge">Simulation Mode Active</span>
+        <button class="btn btn-secondary btn-sm" onclick="refreshAllData()">🔄 Refresh Data</button>
+      </div>
+    </header>
+
+    <main class="content-area">
+      <!-- SCREEN 1: DASHBOARD -->
+      <section id="screen-dashboard" class="screen active">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Total Destinations</div>
+            <div class="stat-value" id="stat-total-dest">0</div>
+            <div class="stat-sub">Configured in catalogue</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Certified Destinations</div>
+            <div class="stat-value" id="stat-cert-dest">0</div>
+            <div class="stat-sub">L1–L4 verified</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Active Connectors</div>
+            <div class="stat-value" id="stat-active-conn">0</div>
+            <div class="stat-sub">One connector, many sites</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Published Posts</div>
+            <div class="stat-value" id="stat-pub-posts">0</div>
+            <div class="stat-sub">Confirmed live</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Rule Violations Blocked</div>
+            <div class="stat-value" id="stat-blocked-posts">0</div>
+            <div class="stat-sub">Zero spam policy</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Failed / Paused</div>
+            <div class="stat-value" id="stat-failed-posts">0</div>
+            <div class="stat-sub">Platform errors mapped</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Recent Publication & Rule Enforcement Activity</span>
+            <button class="btn btn-primary btn-sm" onclick="seedDefaultCatalogue()">⚡ Load 165 Seed Destinations</button>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Content Title</th>
+                  <th>Destination</th>
+                  <th>Rule Decision</th>
+                  <th>Status</th>
+                  <th>Live URL / Details</th>
+                </tr>
+              </thead>
+              <tbody id="dashboard-recent-tbody">
+                <tr><td colspan="5" style="text-align:center;color:#64748b;">No recent activity yet.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 2: CONTENT STUDIO -->
+      <section id="screen-studio" class="screen">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Create New Content Item</span>
+          </div>
+          <form id="content-form" onsubmit="handleCreateContent(event)">
+            <div class="form-group">
+              <label class="form-label">Content Title *</label>
+              <input type="text" id="content-title" class="form-control" required placeholder="e.g., How We Built an Automated AI Video Distribution Pipeline for SaaS Founders" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Body / Article Text (Markdown supported) *</label>
+              <textarea id="content-body" class="form-control" required placeholder="Write your core post or article here. The AI Tailoring Engine will adapt it per destination..."></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Canonical URL</label>
+                <input type="url" id="content-canonical" class="form-control" placeholder="https://incubrix.com/blog/ai-video-pipeline" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Audience Tags (comma-separated)</label>
+                <input type="text" id="content-tags" class="form-control" value="ai, video, saas, founders, marketing" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Language (ISO 639-1)</label>
+                <input type="text" id="content-lang" class="form-control" value="en" />
+              </div>
+            </div>
+            <div class="checkbox-row">
+              <label class="checkbox-label">
+                <input type="checkbox" id="content-promo" />
+                Contains Self-Promotion / Commercial Offer
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="content-ai" checked />
+                Contains AI-Generated Material (Enforces Disclosure Rules)
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary">💾 Save Content Item</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Saved Content Library</span>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Tags</th>
+                  <th>Lang</th>
+                  <th>Promotional</th>
+                  <th>AI Content</th>
+                  <th>Created</th>
+                </tr>
+              </thead>
+              <tbody id="content-list-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 3: DESTINATION EXPLORER -->
+      <section id="screen-explorer" class="screen">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Destination Catalogue & CSV Importer</span>
+            <div style="display:flex;gap:8px;">
+              <button class="btn btn-secondary btn-sm" onclick="seedDefaultCatalogue()">📥 Import 165 Researched Destinations CSV</button>
+            </div>
+          </div>
+          <div class="filter-bar">
+            <input type="text" id="filter-search" class="form-control" placeholder="Search by name or URL..." oninput="loadDestinations()" />
+            <select id="filter-platform" class="form-control" onchange="loadDestinations()">
+              <option value="">All Platforms</option>
+              <option value="discourse">Discourse</option>
+              <option value="lemmy">Lemmy</option>
+              <option value="devto">Dev.to</option>
+              <option value="ghost">Ghost</option>
+              <option value="webhook">Partner Webhook</option>
+              <option value="hashnode">Hashnode</option>
+              <option value="slack">Slack</option>
+              <option value="newsletter">Newsletter</option>
+            </select>
+            <select id="filter-level" class="form-control" onchange="loadDestinations()">
+              <option value="">All Cert Levels</option>
+              <option value="L4">L4 (Native + Metrics)</option>
+              <option value="L3">L3 (Native Verified)</option>
+              <option value="L1">L1 (Assisted)</option>
+              <option value="L0">L0 (Catalogued Only)</option>
+            </select>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Destination Name</th>
+                  <th>Platform / Connector</th>
+                  <th>Audience Tags</th>
+                  <th>Relevance</th>
+                  <th>Rules (Freq / Promo / AI)</th>
+                  <th>Level</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="destinations-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 4: PUBLISHING WORKSPACE -->
+      <section id="screen-workspace" class="screen">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Step 1: Select Content & Get AI Recommendations</span>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Select Content Item</label>
+              <select id="pub-content-select" class="form-control" onchange="fetchRecommendationsForSelected()"></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Idempotency Key (Safe Retries)</label>
+              <input type="text" id="pub-idempotency-key" class="form-control" />
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="fetchRecommendationsForSelected()">🎯 Recommend Top Destinations</button>
+          <button class="btn btn-primary btn-sm" onclick="executeSelectedPublishing()">🚀 Publish to Selected Destinations</button>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Step 2: Recommended Destinations & Eligibility Check</span>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Select</th>
+                  <th>Destination</th>
+                  <th>Connector</th>
+                  <th>Score</th>
+                  <th>Recommendation Reason</th>
+                  <th>Method</th>
+                  <th>Eligibility</th>
+                </tr>
+              </thead>
+              <tbody id="recommendations-tbody">
+                <tr><td colspan="7" style="text-align:center;color:#64748b;">Select a content item above to rank destinations.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card" id="active-job-card" style="display:none;">
+          <div class="card-header">
+            <span class="card-title">Background Job Execution Progress</span>
+            <span class="badge badge-info" id="job-status-badge">queued</span>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="job-progress-bar"></div>
+          </div>
+          <div id="job-results-box" class="code-block" style="margin-top:12px;"></div>
+        </div>
+      </section>
+
+      <!-- SCREEN 5: CONNECTOR MANAGEMENT -->
+      <section id="screen-connectors" class="screen">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Registered Reusable Connectors (Manifest Driven)</span>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Connector Key</th>
+                  <th>Version</th>
+                  <th>Tier</th>
+                  <th>Auth Method</th>
+                  <th>Capabilities</th>
+                  <th>Status</th>
+                  <th>Kill Switch</th>
+                </tr>
+              </thead>
+              <tbody id="connectors-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 6: CERTIFICATION CENTRE -->
+      <section id="screen-certification" class="screen">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Automated Certification Harness (Publish → Verify → Cleanup)</span>
+            <button class="btn btn-secondary btn-sm" onclick="triggerRecertificationScheduler()">⏰ Run 30-Day Recertification Scheduler</button>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Run ID</th>
+                  <th>Connector</th>
+                  <th>Tested Level</th>
+                  <th>Resulting Level</th>
+                  <th>Status</th>
+                  <th>Cleanup</th>
+                  <th>Duration</th>
+                  <th>Evidence</th>
+                </tr>
+              </thead>
+              <tbody id="certifications-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card" id="cert-evidence-card" style="display:none;">
+          <div class="card-header">
+            <span class="card-title">Certification Step-by-Step API Evidence</span>
+          </div>
+          <pre id="cert-evidence-json" class="code-block"></pre>
+        </div>
+      </section>
+
+      <!-- SCREEN 7: PUBLISHING HISTORY -->
+      <section id="screen-history" class="screen">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Complete Publishing Audit & Attempt Log</span>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Content</th>
+                  <th>Destination</th>
+                  <th>Rule Decision</th>
+                  <th>Status</th>
+                  <th>Post ID / Live URL</th>
+                  <th>Error / Rule Reason</th>
+                </tr>
+              </thead>
+              <tbody id="history-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 8: ANALYTICS -->
+      <section id="screen-analytics" class="screen">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Platform Reliability, Rule Safety & Cost Metrics</span>
+          </div>
+          <pre id="analytics-json-box" class="code-block"></pre>
+        </div>
+      </section>
+
+      <!-- SCREEN 9: SETTINGS & HEALTH -->
+      <section id="screen-settings" class="screen">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">System Health, Readiness & Environment Configuration</span>
+          </div>
+          <pre id="health-json-box" class="code-block"></pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/ui/js/app.js"></script>
+</body>
+</html>
