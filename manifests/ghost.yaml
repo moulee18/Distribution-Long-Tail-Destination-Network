@@ -1,0 +1,26 @@
+key: ghost
+version: 1.0.0
+tier: native
+auth: api_key
+surfaces:
+  - key: post
+    content_types: [text, image]
+    spec:
+      title_max_chars: 255
+      body_max_chars: 100000
+      links_allowed: true
+      canonical_url_allowed: true
+      media_supported: [image/jpeg, image/png, image/webp, image/gif]
+rate_limits:
+  per_connection:
+    requests: 60
+    per_seconds: 60
+capabilities: [publish, status, delete]
+error_map:
+  "429": PLATFORM_RATE_LIMIT
+  "422": PLATFORM_CONTENT_REJECTED
+  "401": CONNECTION_AUTH_EXPIRED
+  "403": CONNECTION_AUTH_EXPIRED
+  "500": PLATFORM_UNAVAILABLE
+  "503": PLATFORM_UNAVAILABLE
+instance_param: admin_api_url

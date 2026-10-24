@@ -1,0 +1,25 @@
+key: lemmy
+version: 1.0.0
+tier: protocol
+auth: bot_token
+surfaces:
+  - key: post
+    content_types: [text, image, link]
+    spec:
+      title_max_chars: 200
+      body_max_chars: 10000
+      links_allowed: true
+      media_supported: [image/jpeg, image/png, image/webp]
+rate_limits:
+  per_connection:
+    requests: 30
+    per_seconds: 60
+capabilities: [publish, status, delete]
+error_map:
+  "429": PLATFORM_RATE_LIMIT
+  "400": PLATFORM_CONTENT_REJECTED
+  "401": CONNECTION_AUTH_EXPIRED
+  "403": CONNECTION_AUTH_EXPIRED
+  "500": PLATFORM_UNAVAILABLE
+  "503": PLATFORM_UNAVAILABLE
+instance_param: instance_url
