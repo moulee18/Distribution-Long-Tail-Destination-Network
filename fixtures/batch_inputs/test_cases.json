@@ -1,0 +1,102 @@
+[
+  {
+    "description": "1. Health check endpoint",
+    "method": "GET",
+    "endpoint": "/health",
+    "payload": {}
+  },
+  {
+    "description": "2. Discourse Connector Contract - Validate Valid Post",
+    "method": "POST",
+    "endpoint": "/connector/v1/discourse/validate",
+    "payload": {
+      "rendition": {
+        "title": "How to scale AI video syndication across community forums",
+        "body": "We recently built a deterministic rules engine for community distribution.",
+        "tags": ["ai", "video", "saas"]
+      },
+      "destination": {
+        "name": "Hugging Face Discuss",
+        "url": "https://discuss.huggingface.co",
+        "platform_key": "discourse",
+        "surface": "topic",
+        "connector_key": "discourse"
+      },
+      "connection": {
+        "credentials": {"api_key": "sim_key"},
+        "settings": {"base_url": "https://discuss.huggingface.co", "simulation": true}
+      }
+    }
+  },
+  {
+    "description": "3. Discourse Connector Contract - Publish Valid Post",
+    "method": "POST",
+    "endpoint": "/connector/v1/discourse/publish",
+    "payload": {
+      "rendition": {
+        "title": "How to scale AI video syndication across community forums",
+        "body": "We recently built a deterministic rules engine for community distribution.",
+        "tags": ["ai", "video", "saas"]
+      },
+      "destination": {
+        "name": "Hugging Face Discuss",
+        "url": "https://discuss.huggingface.co",
+        "platform_key": "discourse",
+        "surface": "topic",
+        "connector_key": "discourse"
+      },
+      "connection": {
+        "credentials": {"api_key": "sim_key"},
+        "settings": {"base_url": "https://discuss.huggingface.co", "simulation": true}
+      },
+      "idempotency_key": "batch_test_idem_001"
+    }
+  },
+  {
+    "description": "4. Discourse Connector Contract - Simulated 429 Rate Limit",
+    "method": "POST",
+    "endpoint": "/connector/v1/discourse/publish",
+    "payload": {
+      "rendition": {
+        "title": "Rate Limited Post",
+        "body": "Testing 429 error mapping.",
+        "tags": ["test"]
+      },
+      "destination": {
+        "name": "Hugging Face Discuss",
+        "url": "https://discuss.huggingface.co",
+        "platform_key": "discourse",
+        "surface": "topic",
+        "connector_key": "discourse"
+      },
+      "connection": {
+        "credentials": {"api_key": "sim_key"},
+        "settings": {"base_url": "https://discuss.huggingface.co", "simulate_failure": "rate_limit"}
+      },
+      "idempotency_key": "batch_test_idem_429"
+    }
+  },
+  {
+    "description": "5. Assisted Connector Contract - Build Assist Pack",
+    "method": "POST",
+    "endpoint": "/connector/v1/assisted/build_assist_pack",
+    "payload": {
+      "rendition": {
+        "title": "Show HN: IncuBrix Long-Tail Distribution Engine",
+        "body": "An open-connector engine for rule-respecting community distribution.",
+        "tags": ["founders", "saas"],
+        "contains_ai_content": true
+      },
+      "destination": {
+        "name": "Hacker News - Show HN",
+        "url": "https://news.ycombinator.com/submit",
+        "platform_key": "hn",
+        "surface": "manual_submission",
+        "connector_key": "assisted",
+        "self_promo_allowed": true,
+        "disclosure_required": true,
+        "automation_allowed": false
+      }
+    }
+  }
+]

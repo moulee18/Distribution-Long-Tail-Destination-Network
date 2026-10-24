@@ -1,0 +1,76 @@
+[
+  {
+    "query_id": "q1_ai_video_saas",
+    "content": {
+      "title": "How We Built an Automated AI Video Distribution Pipeline for SaaS Founders",
+      "body": "Learn how modern SaaS founders and video creators use generative AI and long-tail syndication to scale organic marketing.",
+      "tags": [
+        "ai",
+        "video",
+        "saas",
+        "founders",
+        "creators",
+        "marketing"
+      ],
+      "language": "en",
+      "is_promotional": false,
+      "contains_ai_content": true
+    },
+    "relevant_ground_truth_Keywords": [
+      "ai",
+      "video",
+      "saas",
+      "founders",
+      "creators",
+      "marketing"
+    ],
+    "min_expected_relevance_score": 4.5
+  },
+  {
+    "query_id": "q2_non_promo_engineering",
+    "content": {
+      "title": "Benchmarking Vector Quantization in Open-Source LLM Inference",
+      "body": "A deep technical analysis of memory bandwidth and latency tradeoffs in local LLM inference.",
+      "tags": [
+        "ai",
+        "developer",
+        "engineering",
+        "llm"
+      ],
+      "language": "en",
+      "is_promotional": false,
+      "contains_ai_content": false
+    },
+    "relevant_ground_truth_Keywords": [
+      "ai",
+      "developer",
+      "llm",
+      "engineering"
+    ],
+    "min_expected_relevance_score": 4.0
+  },
+  {
+    "query_id": "q3_promotional_saas_launch",
+    "content": {
+      "title": "Introducing IncuBrix 2.0 \u2014 Get 30% Off Our Creator Distribution Plan",
+      "body": "Sign up today for our commercial SaaS distribution platform for creators and marketers.",
+      "tags": [
+        "saas",
+        "marketing",
+        "creators",
+        "founders"
+      ],
+      "language": "en",
+      "is_promotional": true,
+      "contains_ai_content": false
+    },
+    "relevant_ground_truth_Keywords": [
+      "saas",
+      "marketing",
+      "creators",
+      "founders"
+    ],
+    "must_allow_self_promo": true,
+    "min_expected_relevance_score": 4.5
+  }
+]

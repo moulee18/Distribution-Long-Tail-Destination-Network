@@ -1,0 +1,6 @@
+name,url,platform_key,surface,category,audience_tags,language,geo,est_audience,rules_url,frequency_cap,self_promo_allowed,link_policy,disclosure_required,automation_allowed,connector_key,relevance_score,relevance_reason,level,last_certified_at
+Hugging Face Discuss,https://discuss.huggingface.co,discourse,topic,AI & ML,ai;ml;developer;founders,en,GLOBAL,125000,https://discuss.huggingface.co/tos,weekly,true,allowed,true,true,discourse,5.0,Core AI developer & creator community,L3,2026-10-20T10:00:00Z
+Hugging Face Discuss,HTTPS://DISCUSS.HUGGINGFACE.CO/,discourse,topic,AI & ML,ai;ml;developer;founders,en,GLOBAL,125000,https://discuss.huggingface.co/tos,weekly,true,allowed,true,true,discourse,5.0,Core AI developer & creator community,L3,
+OpenAI Developer Forum,https://example-invalid-lang.org,discourse,topic,AI & LLMs,ai;saas;developer;founders,klingon_xyz,GLOBAL,250000,https://community.openai.com/faq,weekly,false,allowed,true,false,assisted,5.0,High-relevance AI builders forum; manual posting required,L1,
+,,discourse,topic,AI,ai,en,GLOBAL,100,,daily,true,allowed,false,true,discourse,3.0,,L0,
+Internal Metadata SSRF Attempt,http://169.254.169.254/latest/meta-data,discourse,topic,Deep Learning,ai;developer;engineering,en,GLOBAL,95000,https://discuss.pytorch.org/guidelines,weekly,false,allowed,false,true,discourse,4.2,Deep learning engineering community,L3,

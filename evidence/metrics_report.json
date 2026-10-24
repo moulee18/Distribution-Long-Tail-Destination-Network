@@ -1,0 +1,409 @@
+{
+  "generated_at": "2026-10-24T07:31:14.170655+00:00",
+  "certification": {
+    "connectors_certified": 9,
+    "avg_certification_duration_ms": 9.44,
+    "evidence_file": "evidence/certification_pack.json"
+  },
+  "reliability": {
+    "simulation_publish_success_rate": "100.0%",
+    "duplicate_posts_under_retry_tests": 0
+  },
+  "rule_safety": {
+    "rule_violations_caught": "100% (6/6 rule classes verified)",
+    "rule_violations_missed": 0
+  },
+  "catalogue": {
+    "real_researched_destinations_imported": 165,
+    "time_for_1000_rows_seconds": 0.301,
+    "invalid_csv_errors_caught": 4
+  },
+  "recommendation": {
+    "precision_at_10_mean": 1.0,
+    "labelled_queries_evaluated": 3,
+    "details": [
+      {
+        "query_id": "q1_ai_video_saas",
+        "precision_at_10": 1.0,
+        "top_10_recommendations": [
+          {
+            "destination_id": "0cc8bd7d-57a7-4159-9691-c01cb70eee40",
+            "destination_name": "Hugging Face Discuss",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: ai, founders. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "7940c9ed-5f68-4c7e-bf73-5b65375462c8",
+            "destination_name": "OpenAI Developer Forum",
+            "platform_key": "discourse",
+            "connector_key": "assisted",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: ai, founders, saas. Assisted manual posting required.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L1",
+            "recommended_method": "assisted_pack"
+          },
+          {
+            "destination_id": "4fd75dfa-cc84-4abd-a140-ed003c46af44",
+            "destination_name": "PyTorch Discuss",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: ai. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "dd184b22-e630-41dc-8998-77416130e224",
+            "destination_name": "Fast.ai Forums",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: ai, creators. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "01e3948f-e0f4-4967-8985-71a88c3683e4",
+            "destination_name": "FeverBee Community Experts",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: founders, marketing, saas. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "a0fc4cc8-c3ba-49ec-b5b3-96b16cb21700",
+            "destination_name": "Ghost Official Forum",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: creators, marketing, saas. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "de3c2bb8-dff4-4a46-9a2e-e4d56181eb64",
+            "destination_name": "Bubble.io No-Code Forum",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: creators, founders, saas. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "9e0cd456-cdac-4869-81e4-601e3297db8f",
+            "destination_name": "WeWeb Community",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: founders, saas. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "62794eeb-5b93-4448-b64d-5b058c471bb9",
+            "destination_name": "n8n Workflow Automation Forum",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: ai, founders, marketing, saas. Certified L4 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L4",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "a19cd89e-abed-4950-8e6c-31968c5c5e7f",
+            "destination_name": "Make.com Community",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: founders, marketing, saas. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          }
+        ]
+      },
+      {
+        "query_id": "q2_non_promo_engineering",
+        "precision_at_10": 1.0,
+        "top_10_recommendations": [
+          {
+            "destination_id": "0cc8bd7d-57a7-4159-9691-c01cb70eee40",
+            "destination_name": "Hugging Face Discuss",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: ai, developer. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "7940c9ed-5f68-4c7e-bf73-5b65375462c8",
+            "destination_name": "OpenAI Developer Forum",
+            "platform_key": "discourse",
+            "connector_key": "assisted",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: ai, developer. Assisted manual posting required.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L1",
+            "recommended_method": "assisted_pack"
+          },
+          {
+            "destination_id": "4fd75dfa-cc84-4abd-a140-ed003c46af44",
+            "destination_name": "PyTorch Discuss",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: ai, developer, engineering. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "dd184b22-e630-41dc-8998-77416130e224",
+            "destination_name": "Fast.ai Forums",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: ai, developer. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "01e3948f-e0f4-4967-8985-71a88c3683e4",
+            "destination_name": "FeverBee Community Experts",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Destination aligns with IncuBrix target audience: founders, marketing, saas. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "a0fc4cc8-c3ba-49ec-b5b3-96b16cb21700",
+            "destination_name": "Ghost Official Forum",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Destination aligns with IncuBrix target audience: creators, marketing, saas. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "de3c2bb8-dff4-4a46-9a2e-e4d56181eb64",
+            "destination_name": "Bubble.io No-Code Forum",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Destination aligns with IncuBrix target audience: creators, founders, saas. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "9e0cd456-cdac-4869-81e4-601e3297db8f",
+            "destination_name": "WeWeb Community",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: developer. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "62794eeb-5b93-4448-b64d-5b058c471bb9",
+            "destination_name": "n8n Workflow Automation Forum",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: ai. Certified L4 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L4",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "a19cd89e-abed-4950-8e6c-31968c5c5e7f",
+            "destination_name": "Make.com Community",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Destination aligns with IncuBrix target audience: founders, marketing, saas. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          }
+        ]
+      },
+      {
+        "query_id": "q3_promotional_saas_launch",
+        "precision_at_10": 1.0,
+        "top_10_recommendations": [
+          {
+            "destination_id": "0cc8bd7d-57a7-4159-9691-c01cb70eee40",
+            "destination_name": "Hugging Face Discuss",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: founders. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "dd184b22-e630-41dc-8998-77416130e224",
+            "destination_name": "Fast.ai Forums",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: creators. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "01e3948f-e0f4-4967-8985-71a88c3683e4",
+            "destination_name": "FeverBee Community Experts",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: founders, marketing, saas. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "a0fc4cc8-c3ba-49ec-b5b3-96b16cb21700",
+            "destination_name": "Ghost Official Forum",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: creators, marketing, saas. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "de3c2bb8-dff4-4a46-9a2e-e4d56181eb64",
+            "destination_name": "Bubble.io No-Code Forum",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: creators, founders, saas. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "9e0cd456-cdac-4869-81e4-601e3297db8f",
+            "destination_name": "WeWeb Community",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: founders, saas. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "62794eeb-5b93-4448-b64d-5b058c471bb9",
+            "destination_name": "n8n Workflow Automation Forum",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: founders, marketing, saas. Certified L4 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L4",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "a19cd89e-abed-4950-8e6c-31968c5c5e7f",
+            "destination_name": "Make.com Community",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: founders, marketing, saas. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "3e72d18d-47c5-48e0-becd-ea48453f8a53",
+            "destination_name": "Shotcut Video Editor Forum",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: creators. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          },
+          {
+            "destination_id": "02212051-93b3-40a3-9416-6299fbd9f329",
+            "destination_name": "Blender Artists Community",
+            "platform_key": "discourse",
+            "connector_key": "discourse",
+            "relevance_score": 5.0,
+            "relevance_reason": "Content matches audience tags: creators. Certified L3 destination.",
+            "eligible": true,
+            "ineligibility_reasons": [],
+            "certification_level": "L3",
+            "recommended_method": "native_publish"
+          }
+        ]
+      }
+    ]
+  },
+  "cost": {
+    "mock_provider_cost_per_1000_publications_usd": 0.0,
+    "estimated_llm_cost_per_1000_publications_usd": 0.15
+  }
+}
