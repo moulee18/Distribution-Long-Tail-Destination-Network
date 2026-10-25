@@ -64,66 +64,34 @@ Each video is encoded with lower-third visual banners, live timecodes (`MM:SS / 
 
 ---
 
-# VIDEO 2: Technical Demo Video (05:36)
+# VIDEO 2: Technical Demo Video (04:27 — 3 Parts)
 **File Location**: [`evidence/technical_demo_video.mp4`](file:///A:/SDE/evidence/technical_demo_video.mp4)  
-**Submission Field**: *Technical demo video URL (up to 8 minutes)*
+**Requirement**: *Technical demo video, up to 5 minutes: one normal run, a refresh on new input, and recovery from one simple failure.*
 
-### Tech Scene 1: System Architecture & Standards (00:00 – 00:28)
-- **On Screen**: OpenAPI 3.1.0 Interactive Swagger UI at `http://localhost:8000/docs`.
-- **Voiceover**:
-  > *"Welcome to the technical deep-dive demonstration of the IncuBrix Distribution Hub. Built by our senior engineering team, IncuBrix is powered by Python 3.11, FastAPI, Pydantic v2, SQLAlchemy 2, Alembic migrations, PostgreSQL, Redis, and Celery for distributed background processing. The system strictly implements the 10-Point Integration Standard, providing an OpenAPI 3.1.0 specification, unified error schemas, and standard health probes."*
+### Part 1: One Normal Run (00:00 – 01:32)
+- **00:00 – 00:20** (Dashboard Overview):
+  > *"Welcome to the technical demonstration of IncuBrix Distribution Hub. In this demo, we will show three core scenarios: a normal publishing run, a dynamic refresh on new input, and automatic recovery from a simple policy failure. Here on our dashboard, all 9 connectors and 165 destinations are active and monitored in real time."*
+- **00:20 – 00:42** (Content Studio — Standard Input):
+  > *"For our normal run, we start in Content Studio. We compose an educational technical article: 'Building Resilient Event-Driven Microservices in Python'. We attach canonical URL attribution for SEO safety, assign backend audience tags, and confirm this post is non-promotional. We save the item to our database."*
+- **00:42 – 01:07** (Publishing Workspace — Recommendations & Rules Pass):
+  > *"We navigate to the Publishing Workspace, select our article, and request destination recommendations. The engine analyzes topic fit and runs pre-flight deterministic rules evaluation. All target communities return an eligibility status of PASS, confirming that character limits, frequency caps, and link policies are fully satisfied."*
+- **01:07 – 01:32** (Background Publishing & Live Confirmation):
+  > *"We click 'Publish to Selected Destinations'. IncuBrix dispatches an asynchronous HTTP 202 job with an Idempotency-Key. The frontend polls progress in real time as the orchestrator adapts the content and invokes the Appendix A connector contract. The job reaches 100% completion, delivering verified live post URLs directly."*
 
-### Tech Scene 2: Appendix A Connector Contract (00:28 – 00:58)
-- **On Screen**: Swagger UI scrolling to `POST /connector/v1/{connector_key}/{method}` endpoints.
-- **Voiceover**:
-  > *"Here you can see our connector contract, strictly matching Appendix A of the assessment specification. Every connector exposes its methods under POST /connector/v1/{connector_key}/{method}. This includes validate, publish, get_status, delete, fetch_metrics, refresh_auth, and build_assist_pack. All methods exchange strongly-typed JSON contracts and return standardized error codes such as DEST_SPEC_VIOLATION, DEST_RULE_FREQUENCY_CAP, and PLATFORM_RATE_LIMIT."*
+### Part 2: A Refresh on New Input (01:32 – 02:27)
+- **01:32 – 01:57** (Content Studio — New Input with Distinct Profile):
+  > *"Now let's demonstrate a refresh on new input. We return to Content Studio and author a completely different article: 'Enterprise Cloud Migration & Kubernetes Cost Optimization'. This post targets infrastructure engineers with distinct tags: cloud, kubernetes, devops, and aws. We save this new content item."*
+- **01:57 – 02:27** (Publishing Workspace — Dynamic Re-ranking on New Input):
+  > *"Back in the Publishing Workspace, we select our new Kubernetes article and request fresh recommendations. Notice how the destination ranking instantly refreshes in real time: cloud and DevOps communities are now elevated to top positions with high relevance scores, proving that our recommender dynamically adapts to new content profiles without manual reconfiguration."*
 
-### Tech Scene 3: Declarative YAML Manifest System (00:58 – 01:26)
-- **On Screen**: Connector Management screen displaying registered connectors, versions, tiers, and auth methods.
-- **Voiceover**:
-  > *"All connectors are driven by declarative YAML manifests located in the manifests directory and validated during application startup. We support 6 Core connectors — Discourse, Lemmy, Dev.to, Ghost, Webhook, and Assisted — plus 3 Advanced connectors: Hashnode GraphQL, Slack Webhooks, and Newsletter Bridges. New platform instances are added purely via database configuration using the manifest's instance_param."*
-
-### Tech Scene 4: Operational Resiliency & Kill Switches (01:26 – 01:51)
-- **On Screen**: Connector Management table showing live kill switch toggle buttons.
-- **Voiceover**:
-  > *"Operational safety is paramount. Every connector includes an instant kill switch accessible via API and UI. Toggling a connector off immediately aborts all subsequent publications with a standard CONNECTOR_DISABLED error code, allowing operators to pause a misbehaving platform instantly without code deployments or service restarts."*
-
-### Tech Scene 5: Deterministic Posting-Rules Engine (01:51 – 02:23)
-- **On Screen**: Destination Explorer showing rule fields: frequency caps, self-promotion, link policy, and AI disclosure.
-- **Voiceover**:
-  > *"At the heart of IncuBrix is our Deterministic Posting-Rules Engine. Before any outbound HTTP call is scheduled, the engine evaluates destination-specific frequency caps, self-promotion prohibitions, link placement policies, and mandatory AI disclosures. If any rule is violated, the attempt is blocked pre-flight and recorded in the audit log, guaranteeing that our network never spams communities or triggers platform bans."*
-
-### Tech Scene 6: Idempotent Publishing & Safe Retries (02:23 – 02:53)
-- **On Screen**: Publishing Workspace demonstrating Idempotency-Key headers and retry handling.
-- **Voiceover**:
-  > *"To handle network timeouts safely, the publishing orchestrator enforces durable idempotency. Every publish request requires an Idempotency-Key header. We store a cryptographic SHA-256 hash of the request payload. If a network blip causes a retry, the orchestrator returns the stored result with zero duplicate posts. If a conflicting payload uses the same key, it immediately raises a 409 IDEMPOTENCY_CONFLICT error."*
-
-### Tech Scene 7: Automated Certification Harness (02:53 – 03:23)
-- **On Screen**: Certification Centre displaying 5-step test runs, status codes, and step-by-step evidence inspection.
-- **Voiceover**:
-  > *"Our Automated Certification Harness certifies destinations safely against local sandboxes and mock servers. The harness executes a strict five-step lifecycle: validate, publish a test post, verify status, delete the post, and verify post-deletion. Test posts are cleaned up immediately, and complete request, response, and status code evidence is stored in the database for auditing."*
-
-### Tech Scene 8: 30-Day Recertification & Automatic Demotion (03:23 – 03:51)
-- **On Screen**: 30-Day Recertification Scheduler button and alert records.
-- **Voiceover**:
-  > *"To guarantee ongoing reliability, a background scheduler periodically audits certification timestamps. Any destination that has not been certified within 30 days, or fails a certification cycle, is automatically demoted from native publishing tiers to L0 or uncertified, and creates an operational alert for administrator intervention."*
-
-### Tech Scene 9: Audit Logging & Secret Redaction (03:51 – 04:17)
-- **On Screen**: Publishing History audit log and structured JSON logging.
-- **Voiceover**:
-  > *"Security is built in by design. Every publication and certification attempt is permanently recorded with exact durations and error mappings. Furthermore, our structured JSON logging system applies regex-based secret redaction across all log streams, ensuring that API keys, bearer tokens, and webhook secrets never leak into log files or APM tools."*
-
-### Tech Scene 10: System Health Probes & Infrastructure (04:17 – 04:42)
-- **On Screen**: Settings & Health screen showing /health and /ready JSON outputs.
-- **Voiceover**:
-  > *"The platform exposes standard /health and /ready endpoints that actively probe PostgreSQL, Redis, MinIO S3 storage, and Celery workers. The full stack runs either via Docker Compose or in standalone Python simulation mode, requiring zero external paid API keys to test and evaluate."*
-
-### Tech Scene 11: Benchmark Performance & 32 Pytest Tests (04:42 – 05:12)
-- **On Screen**: Analytics screen displaying reliability telemetry and benchmark metrics.
-- **Voiceover**:
-  > *"The test suite includes 32 automated Pytest tests that execute in just 2.28 seconds, thoroughly validating all 12 assessment Hard Cases — from 429 rate-limit backoff and auth expiry to platform schema drift. Benchmark measurements prove 1,000-row CSV catalogue imports in just 0.301 seconds, and recommendation Precision@10 measured at a perfect 1.0."*
-
-### Tech Scene 12: Production-Ready Architecture & Conclusion (05:12 – 05:36)
-- **On Screen**: Return to Dashboard showing all 165 destinations certified and system healthy.
-- **Voiceover**:
-  > *"In summary, the IncuBrix Distribution Hub satisfies all Core, Advanced, and Outstanding requirements of the assessment. It combines robust engineering with clean separation of concerns, complete evidence capture, and an intuitive user experience. Thank you for your review, and we look forward to your evaluation."*
+### Part 3: Recovery from One Simple Failure (02:27 – 04:27)
+- **02:27 – 02:51** (Triggering Failure — Self-Promotion Violation):
+  > *"Next, let's demonstrate recovery from a failure. In Content Studio, we create an article with a commercial discount offer and explicitly enable the 'Contains Self-Promotion / Commercial Offer' flag, targeting communities that strictly prohibit self-promotion."*
+- **02:51 – 03:19** (Failure Caught Pre-Flight by Rules Engine):
+  > *"When this promotional content is evaluated against strict community destinations, our Deterministic Rules Engine intervenes immediately. As shown in Publishing History, the attempt is blocked pre-flight with SELF_PROMO_PROHIBITED. No outbound request is sent, zero spam reaches the community, and creator reputation is protected."*
+- **03:19 – 03:44** (Recovery — Content Adjustment to Technical Guidelines):
+  > *"Now let's execute the recovery. We return to Content Studio and adjust the content to comply with community policies: we remove the commercial coupon offer, uncheck the promotional flag, and re-frame the article around technical multi-tenant architecture patterns. We save the compliant revision."*
+- **03:44 – 04:09** (Successful Re-attempt & Live URL):
+  > *"We re-select our adjusted post in the Publishing Workspace and trigger publishing. The pre-flight rules evaluation now passes cleanly. The background orchestrator dispatches the job, reaching 100% completion and successfully generating the live post URL."*
+- **04:09 – 04:27** (Analytics Wrap-Up & Conclusion):
+  > *"In Analytics, we verify that the failure was safely intercepted, zero duplicate posts occurred, and our recovery was completely successful. This concludes our technical demonstration of IncuBrix Distribution Hub."*
