@@ -41,7 +41,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: uvicorn mock-platforms.mock_server:mock_app --host 0.0.0.0 --port 8001
+    command: uvicorn --app-dir mock-platforms mock_server:mock_app --host 0.0.0.0 --port 8001
     ports:
       - "8001:8001"
     healthcheck:

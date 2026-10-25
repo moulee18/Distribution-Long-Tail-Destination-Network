@@ -16,7 +16,7 @@ def _is_redis_reachable() -> bool:
         return False
 
 def dispatch_job(job_id: str):
-    if _is_redis_reachable() and not settings.SIMULATION_MODE:
+    if _is_redis_reachable():
         try:
             celery_app.send_task("tasks.execute_publication_job", args=[job_id])
             logger.info(f"Dispatched job {job_id} to Celery broker")
